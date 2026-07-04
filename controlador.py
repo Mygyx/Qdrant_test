@@ -28,7 +28,7 @@ def crear_coleccion(nombre):
         }
     )
 
-    print("✅ Colección creada")
+    print("Colección creada")
 
 
 def guardar_vectores(nombre_coleccion, chunks, vectores):
@@ -50,7 +50,7 @@ def guardar_vectores(nombre_coleccion, chunks, vectores):
         points=puntos
     )
 
-    print("✅ Datos guardados en Qdrant")    
+    print("Datos guardados en Qdrant")    
 
 def buscar_en_pdf(pregunta, coleccion="metamorfosis"):
     client = obtener_cliente()
@@ -60,12 +60,12 @@ def buscar_en_pdf(pregunta, coleccion="metamorfosis"):
     resultados = client.query_points(
         collection_name=coleccion,
         query=vector,
-        limit=3
+        limit=100000
     )
 
     textos = []
 
-    # 👇 ESTA ES LA FORMA CORRECTA
+    #ESTA ES LA FORMA CORRECTA
     for punto in resultados.points:
         textos.append(punto.payload["texto"])
 
